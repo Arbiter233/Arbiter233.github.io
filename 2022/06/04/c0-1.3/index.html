@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Reading Log of &lt;&lt;Real-world cryptography&gt;&gt; | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Note on Real-world cryptographyLog 1time: updated 6&#x2F;3 14:00content:up to chpater 1.3 Chapter1.2 Hash: length of output(digest) is fiexedmin length: (currently) 128 bits for property 1,2 256bits">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reading Log of &lt;&lt;Real-world cryptography&gt;&gt;">
+<meta property="og:url" content="http://example.com/2022/06/04/c0-1.3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Note on Real-world cryptographyLog 1time: updated 6&#x2F;3 14:00content:up to chpater 1.3 Chapter1.2 Hash: length of output(digest) is fiexedmin length: (currently) 128 bits for property 1,2 256bits">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-04T04:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-05T14:50:56.658Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-c0-1.3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/04/c0-1.3/" class="article-date">
+  <time class="dt-published" datetime="2022-06-04T04:00:00.000Z" itemprop="datePublished">2022-06-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Reading Log of &lt;&lt;Real-world cryptography&gt;&gt;
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Note-on-Real-world-cryptography"><a href="#Note-on-Real-world-cryptography" class="headerlink" title="Note on Real-world cryptography"></a>Note on Real-world cryptography</h1><h2 id="Log-1"><a href="#Log-1" class="headerlink" title="Log 1"></a>Log 1</h2><p>time: updated 6&#x2F;3 14:00<br>content:up to chpater 1.3</p>
+<h2 id="Chapter1-2-Hash-length-of-output-digest-is-fiexed"><a href="#Chapter1-2-Hash-length-of-output-digest-is-fiexed" class="headerlink" title="Chapter1.2 Hash: length of output(digest) is fiexed"></a>Chapter1.2 Hash: length of output(digest) is fiexed</h2><p>min length: (currently) 128 bits for property 1,2 256bits for collision</p>
+<h3 id="1-3-vital-properties"><a href="#1-3-vital-properties" class="headerlink" title="1. 3 vital properties:"></a>1. 3 vital properties:</h3><ol>
+<li><p>pre-image resistance:<br> Given (public algorithm F) and output y<br> It should not be possible to reverse the F and find out input x </p>
+</li>
+<li><p>second pre-iamge resistance:<br> Given (public Algorithm F) , output y, input x1<br> It should not be possible to find another<br> input x2 s.t. F(x2) &#x3D; y</p>
+</li>
+<li><p>collision resistance:<br> Given (public Algorithm F)<br> It should not be possible to construct x1!&#x3D;x2 s.t. F(x1) &#x3D; F(x2)</p>
+</li>
+</ol>
+<h3 id="2-Usage-openssl-cli"><a href="#2-Usage-openssl-cli" class="headerlink" title="2. Usage: openssl cli"></a>2. Usage: openssl cli</h3><p>  ex: use sha256 to hash “hello”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;hello&quot; | openssl dgst -sha256</span><br></pre></td></tr></table></figure>
+<p>result:  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHA2-256(stdin)=5891b5b522d5df086d0ff0b110fbd9d21bb4fc7163af34d08286a2e846f6be03</span><br></pre></td></tr></table></figure>
+<h3 id="3-Warning-sha1-M5-is-broken-sha2-is-vulnerable-due-to-length-extension-attacks"><a href="#3-Warning-sha1-M5-is-broken-sha2-is-vulnerable-due-to-length-extension-attacks" class="headerlink" title="3. Warning: sha1 ,M5 is broken ; sha2 is vulnerable due to length-extension attacks"></a>3. Warning: sha1 ,M5 is broken ; sha2 is vulnerable due to length-extension attacks</h3><h3 id="4-XOR-exclusive-or"><a href="#4-XOR-exclusive-or" class="headerlink" title="4. XOR: exclusive or"></a>4. XOR: exclusive or</h3><p>1 xor 0 &#x3D; 1<br>1 xor 1 &#x3D; 0  !!!<br>0 xor 1 &#x3D; 1<br>0 xor 0 &#x3D; 0</p>
+<h3 id="5-Compression-function"><a href="#5-Compression-function" class="headerlink" title="5. Compression function:"></a>5. Compression function:</h3><p>Taking two inputs, produce one output ,using XOR operator.</p>
+<h3 id="6-Construction-Merkle-Damgard-x2F-Sponge"><a href="#6-Construction-Merkle-Damgard-x2F-Sponge" class="headerlink" title="6.Construction: Merkle-Damgard&#x2F;Sponge"></a>6.Construction: Merkle-Damgard&#x2F;Sponge</h3><h4 id="Sha2-Merkle-Damgard"><a href="#Sha2-Merkle-Damgard" class="headerlink" title="Sha2: Merkle-Damgard"></a>Sha2: Merkle-Damgard</h4><ol>
+<li>Add padding to input to fit certain length s.t. it can be divided into chunks of same block size to fit in argument of compression function.  </li>
+<li>Iteratively applies compreesion function to msg, use previous ouput as 2nd argument for compression function, add padding whereever necessary as in step1.</li>
+</ol>
+<ul>
+<li>(vulnerable to length-extension attack)</li>
+</ul>
+<h4 id="Sha-3-Sponge"><a href="#Sha-3-Sponge" class="headerlink" title="Sha-3: Sponge"></a>Sha-3: Sponge</h4><ul>
+<li>keccak-f permutation</li>
+<li>use permutation to map all possible inputs and possible ouputs</li>
+<li>separate input lenght  &#x3D; rate + capacity(secret)</li>
+<li>initiate with 0s, absorb input by XOR with input length, repeat similarly as above</li>
+</ul>
+<h3 id="7-Shake-and-cShake"><a href="#7-Shake-and-cShake" class="headerlink" title="7. Shake and cShake"></a>7. Shake and cShake</h3><p>Allow usage of customrizable string as argument to produce different lenght of output with same input</p>
+<h3 id="8-tuplehash"><a href="#8-tuplehash" class="headerlink" title="8. tuplehash"></a>8. tuplehash</h3><p>On top of cShake, clearly separates the info s.t.  hash of { “hello”  } is different from { “hell” “0”}</p>
+<h2 id="Chapter1-3-MAC-message-authentication-codes"><a href="#Chapter1-3-MAC-message-authentication-codes" class="headerlink" title="Chapter1.3 MAC : message authentication codes"></a>Chapter1.3 MAC : message authentication codes</h2><p>Description: use symmetric key for parties to verify integrity and authenticity of msg.</p>
+<ul>
+<li>common: HMAC(with SHA2), KMAC(with SHA3)</li>
+<li>HMAC: hash concatenation  H(k1 || msg) &#x3D; h1<br>H(k2 || h1) &#x3D; h iteratively</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/04/c0-1.3/" data-id="cl40jv77d00006cizacrh3p5z" data-title="Reading Log of &lt;&lt;Real-world cryptography&gt;&gt;" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/05/29/first-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">First blog</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/04/c0-1.3/">Reading Log of &lt;&lt;Real-world cryptography&gt;&gt;</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/29/first-blog/">First blog</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/29/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

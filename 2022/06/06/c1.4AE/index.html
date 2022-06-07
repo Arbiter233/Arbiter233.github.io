@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>post | Hexo</title>
+  <title>c1.4AE.md | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="C1.3 MAC (continued) and C1.4 Authenticated EncryptionMAC message authentication codesDescription: use symmetric key for parties to verify integrity and authenticity of msg.  common: HMAC(with SHA2),">
+  <meta name="description" content="C1.4 Authenticated encryptionAE: communicate with known key and symmetric encryptionAES: advacned encription standard and its developments security: mostly AES-128 ,require 2*128 opertions to brute fo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="post">
-<meta property="og:url" content="https://arbiter233.github.io/2022/06/05/c1.3-1.4/index.html">
+<meta property="og:title" content="c1.4AE.md">
+<meta property="og:url" content="https://arbiter233.github.io/2022/06/06/c1.4AE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="C1.3 MAC (continued) and C1.4 Authenticated EncryptionMAC message authentication codesDescription: use symmetric key for parties to verify integrity and authenticity of msg.  common: HMAC(with SHA2),">
+<meta property="og:description" content="C1.4 Authenticated encryptionAE: communicate with known key and symmetric encryptionAES: advacned encription standard and its developments security: mostly AES-128 ,require 2*128 opertions to brute fo">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-06T03:20:14.000Z">
+<meta property="article:published_time" content="2022-06-06T19:21:05.000Z">
 <meta property="article:modified_time" content="2022-06-07T02:19:56.032Z">
 <meta property="article:author" content="Arbiter233">
-<meta property="article:tag" content="Reading-log">
+<meta property="article:tag" content="Reading log">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -74,14 +74,14 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-c1.3-1.4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-c1.4AE" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/06/05/c1.3-1.4/" class="article-date">
-  <time class="dt-published" datetime="2022-06-06T03:20:14.000Z" itemprop="datePublished">2022-06-05</time>
+    <a href="/2022/06/06/c1.4AE/" class="article-date">
+  <time class="dt-published" datetime="2022-06-06T19:21:05.000Z" itemprop="datePublished">2022-06-06</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Cryptogrphy/">Cryptogrphy</a>
+    <a class="article-category-link" href="/categories/Cryptopraphy/">Cryptopraphy</a>
   </div>
 
   </div>
@@ -92,7 +92,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      post
+      c1.4AE.md
     </h1>
   
 
@@ -100,22 +100,47 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="C1-3-MAC-continued-and-C1-4-Authenticated-Encryption"><a href="#C1-3-MAC-continued-and-C1-4-Authenticated-Encryption" class="headerlink" title="C1.3 MAC (continued) and C1.4 Authenticated Encryption"></a>C1.3 MAC (continued) and C1.4 Authenticated Encryption</h1><h2 id="MAC-message-authentication-codes"><a href="#MAC-message-authentication-codes" class="headerlink" title="MAC message authentication codes"></a>MAC message authentication codes</h2><p>Description: use symmetric key for parties to verify integrity and authenticity of msg.</p>
-<ul>
-<li>common: HMAC(with SHA2), KMAC(with SHA3)</li>
-<li>HMAC: hash concatenation  H(k1 || msg) &#x3D; h1<br>H(k2 || h1) &#x3D; h iteratively</li>
-<li>classical usage: web cookies, passsword storage</li>
-<li>avoid directly usage of SHA256 to build MAC, use HMAC</li>
+        <h1 id="C1-4-Authenticated-encryption"><a href="#C1-4-Authenticated-encryption" class="headerlink" title="C1.4 Authenticated encryption"></a>C1.4 Authenticated encryption</h1><h2 id="AE-communicate-with-known-key-and-symmetric-encryption"><a href="#AE-communicate-with-known-key-and-symmetric-encryption" class="headerlink" title="AE: communicate with known key and symmetric encryption"></a>AE: communicate with known key and symmetric encryption</h2><h2 id="AES-advacned-encription-standard-and-its-developments"><a href="#AES-advacned-encription-standard-and-its-developments" class="headerlink" title="AES: advacned encription standard and its developments"></a>AES: advacned encription standard and its developments</h2><ul>
+<li><p>security: mostly AES-128 ,require 2*128 opertions to brute force</p>
+</li>
+<li><p>general procesure:  </p>
+<ol>
+<li>take a variable-length key</li>
+<li>takes a plain-text of 128bits(usually)</li>
+<li>output s a cyphertext of 128bits</li>
+</ol>
+</li>
+<li><p>a little detaied for enryption:</p>
+<ol>
+<li>transform input into square matrix</li>
+<li>apply subbytes, shiftrows, mixclomuns Funtion to input.<br>  note: above 3 operations are inversible</li>
+<li>apply AddRoundKey funciont using XOR operation to get output cyphertext</li>
+</ol>
+</li>
+<li><p>To transform into square matrix, padding is necessary, aka mode of operation.<br> Naive way of direclty (ECB,electronic codebook)dividing into boocks of 16bytes will cause trouble.<br> To overcome , CBC(cypher block chaining) use a unpredictable and random IV(initialization vector) to randomize encryption.</p>
+</li>
+<li><p>to encrypt with CBC operation, generate a random IV and XOR with first 16bytes of plaintext before encryption.  </p>
+</li>
+<li><p>WARNING: IV need to be unique and unpredictable!  </p>
+</li>
+<li><p>Use previous cyphertext to XOR with next block of input iteratively. </p>
+</li>
+<li><p>To add integrity to the ciphertext , add addtional HMAC as authentication tag, forming a AES-CBC-HMAC construction.</p>
+</li>
+<li><p>To be developer-friendly, AES with Galois&#x2F;Counter Mode is invented as an all-in-one construcion<br>It apply AES with a key to a 128bit consisting of a nonce(a random number with max lenght 96 bits) concatenated with a count number(max 32bits)to produce a keystream</p>
+</li>
+<li><p>AES-GCM avoids padding as it can truncates the length of keystream to fit with length of input</p>
+</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://arbiter233.github.io/2022/06/05/c1.3-1.4/" data-id="cl43o0pxd000530izblxe6d2v" data-title="post" class="article-share-link">Share</a>
+      <a data-url="https://arbiter233.github.io/2022/06/06/c1.4AE/" data-id="cl43o0px7000230izdxn3ejzj" data-title="c1.4AE.md" class="article-share-link">Share</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reading-log/" rel="tag">Reading-log</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reading-log/" rel="tag">Reading log</a></li></ul>
 
     </footer>
   </div>
@@ -123,19 +148,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/06/06/c1.4AE/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/06/06/index/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          c1.4AE.md
+          (no title)
         
       </div>
     </a>
   
   
-    <a href="/2022/06/04/c0-1.3/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/06/05/c1.3-1.4/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hash function</div>
+      <div class="article-nav-title">post</div>
     </a>
   
 </nav>

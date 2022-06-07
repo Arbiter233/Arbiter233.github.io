@@ -78,7 +78,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Cryptopraphy/">Cryptopraphy</a>
+    <a class="article-category-link" href="/categories/Cryptography/">Cryptography</a>
   </div>
 
   </div>
@@ -133,7 +133,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://arbiter233.github.io/2022/06/06/c1.4AE/" data-id="cl43q1y160005qdiz29rd7wht" data-title="Authenticated Encryption" class="article-share-link">Share</a>
+      <a data-url="https://arbiter233.github.io/2022/06/06/c1.4AE/" data-id="cl43rpwd50005uqiz51j1g3ct" data-title="Authenticated Encryption" class="article-share-link">Share</a>
       
       
       
@@ -184,7 +184,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://arbiter233.github.io/2022/06/05/c1.3-1.4/" data-id="cl43q1y110002qdiz58on69zg" data-title="MAC" class="article-share-link">Share</a>
+      <a data-url="https://arbiter233.github.io/2022/06/05/c1.3-1.4/" data-id="cl43rpwcz0002uqizep784r09" data-title="MAC" class="article-share-link">Share</a>
       
       
       
@@ -268,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://arbiter233.github.io/2022/06/04/c0-1.3/" data-id="cl43q1y0x0001qdizeblf7o64" data-title="Hash function" class="article-share-link">Share</a>
+      <a data-url="https://arbiter233.github.io/2022/06/04/c0-1.3/" data-id="cl43rpwcv0001uqiz8ldo3b1m" data-title="Hash function" class="article-share-link">Share</a>
       
       
       
@@ -327,19 +327,15 @@
 <p>Explain: </p>
 <ol>
 <li>Initialize with 0s, file in until corner.</li>
-<li><ol>
 <li>(di,dj) &#x3D; (0,1), representing (0+i), direction vector </li>
-<li><code>A[(i+di)%n][(j+dj)%n] ==1</code> will trigger turning<br>  It require j+dj(j+1) &#x3D;&#x3D;n, meaning at the end of first row.  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    3. direction vector (di,dj) is changed and ready for addition.</span><br><span class="line">3. GO to the end.</span><br><span class="line"></span><br><span class="line">#### Solution2:</span><br><span class="line">Solution from</span><br><span class="line">[title](https://github.com/youngyangyang04/leetcode-master)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Updated 5/30 Solution using insight 2</span><br><span class="line">## add Insight to LC #529  Building it inside </span><br><span class="line">### Insight 3 build with zip()</span><br><span class="line">```python</span><br><span class="line">res, lo = [[n*n]], n*n </span><br><span class="line">        while lo &gt; 1:</span><br><span class="line">            lo, hi = lo - len(res), lo</span><br><span class="line">            #print(&#x27;res:&#x27;, res)</span><br><span class="line">            res = [list(range(lo, hi))] + list(zip(*res[::-1]))</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure>
-explanation :</li>
-</ol>
-</li>
+<li><code>A[(i+di)%n][(j+dj)%n] ==1</code> will trigger turning.It require j+dj(j+1) &#x3D;&#x3D;n, meaning at the end of first row.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">4. direction vector (di,dj) is changed and ready for addition.</span><br><span class="line">5. GO to the end.</span><br><span class="line"></span><br><span class="line">#### Solution2:</span><br><span class="line">Solution from</span><br><span class="line">[title](https://github.com/youngyangyang04/leetcode-master)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Updated 5/30 Solution using insight 2</span><br><span class="line">## add Insight to LC #529  Building it inside </span><br><span class="line">### Insight 3 build with zip()</span><br><span class="line">```python</span><br><span class="line">res, lo = [[n*n]], n*n </span><br><span class="line">        while lo &gt; 1:</span><br><span class="line">            lo, hi = lo - len(res), lo</span><br><span class="line">            #print(&#x27;res:&#x27;, res)</span><br><span class="line">            res = [list(range(lo, hi))] + list(zip(*res[::-1]))</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure><br>explanation :</li>
 <li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/8421337/rotating-a-two-dimensional-array-in-python">explanation on zip part</a><br>[::-1] return a list in revered order<br>ex:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="built_in">list</span>(revered(a))  <span class="string">&#x27;&#x27;&#x27;is same as&#x27;&#x27;&#x27;</span> a[::-<span class="number">1</span>]</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://arbiter233.github.io/2022/05/29/first-blog/" data-id="cl43q1y170006qdiz82i98iap" data-title="First blog" class="article-share-link">Share</a>
+      <a data-url="https://arbiter233.github.io/2022/05/29/first-blog/" data-id="cl43rpwdb000guqiz3hmxc2tz" data-title="First blog" class="article-share-link">Share</a>
       
       
       
@@ -392,7 +388,7 @@ explanation :</li>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://arbiter233.github.io/2022/05/29/hello-world/" data-id="cl43q1y180007qdizctjue6qw" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="https://arbiter233.github.io/2022/05/29/hello-world/" data-id="cl43rpwdc000huqizcin1bax1" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -414,7 +410,7 @@ explanation :</li>
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography/">Cryptography</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptopraphy/">Cryptopraphy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography/">Cryptography</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a></li></ul>
     </div>
   </div>
 

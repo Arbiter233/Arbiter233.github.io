@@ -6,15 +6,15 @@
   
   <title>Authenticated Encryption | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="C1.4 Authenticated encryptionAE: communicate with known key and symmetric encryptionAES: advacned encription standard and its developments security: mostly AES-128 ,require 2*128 opertions to brute fo">
+  <meta name="description" content="update log:  date: 6.7modify content on AEAD, add ChaCha20-Poly1305  C1.4 Authenticated encryptionAE: communicate with known key and symmetric encryptionAES: advacned encription standard and its devel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Authenticated Encryption">
 <meta property="og:url" content="https://arbiter233.github.io/2022/06/06/c1.4AE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="C1.4 Authenticated encryptionAE: communicate with known key and symmetric encryptionAES: advacned encription standard and its developments security: mostly AES-128 ,require 2*128 opertions to brute fo">
+<meta property="og:description" content="update log:  date: 6.7modify content on AEAD, add ChaCha20-Poly1305  C1.4 Authenticated encryptionAE: communicate with known key and symmetric encryptionAES: advacned encription standard and its devel">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-06T19:21:05.000Z">
-<meta property="article:modified_time" content="2022-06-07T06:12:52.225Z">
+<meta property="article:modified_time" content="2022-06-07T19:55:37.682Z">
 <meta property="article:author" content="Arbiter233">
 <meta property="article:tag" content="Reading log">
 <meta name="twitter:card" content="summary">
@@ -100,7 +100,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="C1-4-Authenticated-encryption"><a href="#C1-4-Authenticated-encryption" class="headerlink" title="C1.4 Authenticated encryption"></a>C1.4 Authenticated encryption</h1><h2 id="AE-communicate-with-known-key-and-symmetric-encryption"><a href="#AE-communicate-with-known-key-and-symmetric-encryption" class="headerlink" title="AE: communicate with known key and symmetric encryption"></a>AE: communicate with known key and symmetric encryption</h2><h2 id="AES-advacned-encription-standard-and-its-developments"><a href="#AES-advacned-encription-standard-and-its-developments" class="headerlink" title="AES: advacned encription standard and its developments"></a>AES: advacned encription standard and its developments</h2><ul>
+        <p>update log:</p>
+<ol>
+<li>date: 6.7<br>modify content on AEAD, add ChaCha20-Poly1305</li>
+</ol>
+<h1 id="C1-4-Authenticated-encryption"><a href="#C1-4-Authenticated-encryption" class="headerlink" title="C1.4 Authenticated encryption"></a>C1.4 Authenticated encryption</h1><h2 id="AE-communicate-with-known-key-and-symmetric-encryption"><a href="#AE-communicate-with-known-key-and-symmetric-encryption" class="headerlink" title="AE: communicate with known key and symmetric encryption"></a>AE: communicate with known key and symmetric encryption</h2><h2 id="AES-advacned-encription-standard-and-its-developments"><a href="#AES-advacned-encription-standard-and-its-developments" class="headerlink" title="AES: advacned encription standard and its developments"></a>AES: advacned encription standard and its developments</h2><ul>
 <li><p>security: mostly AES-128 ,require 2*128 opertions to brute force</p>
 </li>
 <li><p>general procesure:  </p>
@@ -117,7 +121,11 @@
 <li>apply AddRoundKey funciont using XOR operation to get output cyphertext</li>
 </ol>
 </li>
-<li><p>To transform into square matrix, padding is necessary, aka mode of operation.<br> Naive way of direclty (ECB,electronic codebook)dividing into boocks of 16bytes will cause trouble.<br> To overcome , CBC(cypher block chaining) use a unpredictable and random IV(initialization vector) to randomize encryption.</p>
+<li><p>To transform into square matrix, padding is necessary, aka mode of operation.  </p>
+</li>
+<li><p>Naive way of direclty (ECB,electronic codebook)dividing into boocks of 16bytes will lead to info leak of pattern as encryption is deterministic, typical example   </p>
+</li>
+<li><p>To overcome , CBC(cypher block chaining) use a unpredictable and random IV(initialization vector) to randomize input before encryption.</p>
 </li>
 <li><p>to encrypt with CBC operation, generate a random IV and XOR with first 16bytes of plaintext before encryption.  </p>
 </li>
@@ -126,17 +134,28 @@
 <li><p>Use previous cyphertext to XOR with next block of input iteratively. </p>
 </li>
 <li><p>To add integrity to the ciphertext , add addtional HMAC as authentication tag, forming a AES-CBC-HMAC construction.</p>
-</li>
-<li><p>To be developer-friendly, AES with Galois&#x2F;Counter Mode is invented as an all-in-one construcion<br>It apply AES with a key to a 128bit consisting of a nonce(a random number with max lenght 96 bits) concatenated with a count number(max 32bits)to produce a keystream</p>
+<h2 id="From-AES-CBC-HMAC-to-AEAD-AE-with-associated-data"><a href="#From-AES-CBC-HMAC-to-AEAD-AE-with-associated-data" class="headerlink" title="From AES-CBC-HMAC to AEAD(AE with associated data)"></a>From AES-CBC-HMAC to AEAD(AE with associated data)</h2></li>
+<li><p>To be developer-friendly and standarlized, AEAD is introduced</p>
+<h3 id="AES-GCM-AES-with-Galois-Counter-Mode-AEAD"><a href="#AES-GCM-AES-with-Galois-Counter-Mode-AEAD" class="headerlink" title="AES-GCM(AES with Galois Counter Mode) AEAD"></a>AES-GCM(AES with Galois Counter Mode) AEAD</h3></li>
+<li><p>It apply AES with a key to a 128bit string consisting of a nonce(a random number with max lenght 96 bits) concatenated with a count number(max 32bits)to produce a keystream</p>
 </li>
 <li><p>AES-GCM avoids padding as it can truncates the length of keystream to fit with length of input</p>
 </li>
 </ul>
+<h3 id="AEAD-alternative-ChaCha20-Poly1305"><a href="#AEAD-alternative-ChaCha20-Poly1305" class="headerlink" title="AEAD alternative: ChaCha20-Poly1305"></a>AEAD alternative: ChaCha20-Poly1305</h3><ol>
+<li>Speed:<ul>
+<li>Recall: AES is fast with hardware support</li>
+<li>In contrast, chacha20 and poly1305 were  designed to be fast with software</li>
+</ul>
+</li>
+<li>chacha20 takes a key and a unique nonce to produce many blocks of 64bits keystream by calling block function, which takes a 256 bits key, a 92 bits nonce, a 32 bits counter as in AES and AES-GCM.<br>Then XOR the keystrem with plaintext to produce ciphertext.</li>
+</ol>
+<p>3</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://arbiter233.github.io/2022/06/06/c1.4AE/" data-id="cl43s1dd20005g7iz6ywc97l5" data-title="Authenticated Encryption" class="article-share-link">Share</a>
+      <a data-url="https://arbiter233.github.io/2022/06/06/c1.4AE/" data-id="cl46mrg6x000d4uizgsardc1z" data-title="Authenticated Encryption" class="article-share-link">Share</a>
       
       
       
@@ -147,6 +166,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2022/06/07/6-7-md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          6.7
+        
+      </div>
+    </a>
   
   
     <a href="/2022/06/05/c1.3-1.4/" id="article-nav-older" class="article-nav-link-wrap">
@@ -168,7 +196,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography/">Cryptography</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography/">Cryptography</a></li></ul>
     </div>
   </div>
 
@@ -178,7 +206,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reading-log/" rel="tag">Reading log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reading-log/" rel="tag">Reading log</a></li></ul>
     </div>
   </div>
 
@@ -188,7 +216,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Reading-log/" style="font-size: 20px;">Reading log</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a>
+      <a href="/tags/Reading-log/" style="font-size: 10px;">Reading log</a>
     </div>
   </div>
 
@@ -210,6 +238,14 @@
       <ul>
         
           <li>
+            <a href="/2022/06/09/Attacking-until-becoming-the-target/">Attacking until becoming the target</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/6-7-md/">6.7</a>
+          </li>
+        
+          <li>
             <a href="/2022/06/06/c1.4AE/">Authenticated Encryption</a>
           </li>
         
@@ -219,14 +255,6 @@
         
           <li>
             <a href="/2022/06/04/c0-1.3/">Hash function</a>
-          </li>
-        
-          <li>
-            <a href="/2022/05/29/first-blog/">First blog</a>
-          </li>
-        
-          <li>
-            <a href="/2022/05/29/hello-world/">Hello World</a>
           </li>
         
       </ul>

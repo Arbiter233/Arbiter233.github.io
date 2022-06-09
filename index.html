@@ -71,6 +71,118 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Attacking-until-becoming-the-target" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/09/Attacking-until-becoming-the-target/" class="article-date">
+  <time class="dt-published" datetime="2022-06-09T05:40:30.000Z" itemprop="datePublished">2022-06-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/09/Attacking-until-becoming-the-target/">Attacking until becoming the target</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Reading log of <em><strong>THis is how they tell me the world ends: THe cyberweapons arms race</strong></em> by <strong>Nicole Perlroth</strong></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://arbiter233.github.io/2022/06/09/Attacking-until-becoming-the-target/" data-id="cl46mrg6i00014uiz5s846txs" data-title="Attacking until becoming the target" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reading-log/" rel="tag">Reading log</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-6-7-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/07/6-7-md/" class="article-date">
+  <time class="dt-published" datetime="2022-06-07T21:57:08.000Z" itemprop="datePublished">2022-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/07/6-7-md/">6.7</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Reading-log-on-Crypto101"><a href="#Reading-log-on-Crypto101" class="headerlink" title="Reading log on Crypto101"></a>Reading log on Crypto101</h1><h2 id="ch5-XOR"><a href="#ch5-XOR" class="headerlink" title="ch5 XOR"></a>ch5 XOR</h2><h3 id="Arithemetic"><a href="#Arithemetic" class="headerlink" title="Arithemetic:"></a>Arithemetic:</h3><ol>
+<li>x XOR x &#x3D; 0</li>
+<li>x XOR 0 &#x3D; x</li>
+<li>x XOR y &#x3D; y XOR x</li>
+<li>(x XOR y) XOR z &#x3D; x XOR (y XOR z)</li>
+</ol>
+<ul>
+<li>Generally x XOR y XOR &#x3D; y since<br> x XOR y XOR x &#x3D; x XOR x XOR y<br>         &#x3D; 0 XOR y<br>         &#x3D; y</li>
+</ul>
+<h3 id="bitwise-exmple-in-python"><a href="#bitwise-exmple-in-python" class="headerlink" title="bitwise exmple in python"></a>bitwise exmple in python</h3><p><code>73^87</code> outputs 30 since<br>73 &#x3D; 0b1001001, 87 &#x3D; 0b1010111,where 0b means numbers are stored as binary<br>XOR bitwisely, getting 0b0011110 &#x3D; 30</p>
+<hr>
+<h3 id="XOR-as-a-one-time-pad"><a href="#XOR-as-a-one-time-pad" class="headerlink" title="XOR as a one-time pad"></a>XOR as a one-time pad</h3><h4 id="To-be-secure"><a href="#To-be-secure" class="headerlink" title="To be secure"></a>To be secure</h4><ol>
+<li>pad can be used only once</li>
+<li>pad has to be truly random<h4 id="attack-when-pad-used-more-than-once"><a href="#attack-when-pad-used-more-than-once" class="headerlink" title="attack when pad used more than once"></a>attack when pad used more than once</h4></li>
+<li>c1 XOR c2 &#x3D; (p1 XOR k) XOR (p2 XOR k) &#x3D; … &#x3D; p1 XOR p2<br>looks fine but  </li>
+<li>ci XOR pi &#x3D; (pi XOR k) XOR pi<br>&#x3D; pi XOR pi XOR k<br>&#x3D; k<br>key leak, even a only leaking ki(a bit of entire key) can be fatal.</li>
+</ol>
+<ul>
+<li><p>iteratively, even multi-pad pads are broken due to NPL and ML </p>
+</li>
+<li><p>Keyexchange and secruity are vital in practice.</p>
+<h2 id="Ch6-block-cipher"><a href="#Ch6-block-cipher" class="headerlink" title="Ch6 block cipher"></a>Ch6 block cipher</h2><p>attack on AES-ECB:</p>
+</li>
+</ul>
+<ol>
+<li>send a plaintext A of length 1 byte shorter than blocksize, the block will be (A||s0),s0 is first byte. E(A||s0) &#x3D; Cr1 is known to attacker.</li>
+<li>send a plain text A’ of block size,brute force s0, as it can verified with Cr1.</li>
+<li>Iteratively repeat, brute force each byte of secret can be done in p*b attempts where p is # of possible values in each byte, typically 2^8 &#x3D;256, b is blocksize<h2 id="ch7-stream-cipher"><a href="#ch7-stream-cipher" class="headerlink" title="ch7 stream cipher"></a>ch7 stream cipher</h2>encryption only prevenets attacker from reading , but it is not enough without authentification.  <h3 id="padding-methods"><a href="#padding-methods" class="headerlink" title="padding methods"></a>padding methods</h3></li>
+<li>with zeors(constant)<br>flaw: cannot send msg end with 0</li>
+<li>PKCS#5&#x2F;7<br>IDEA: for 8-byte block with 3 type given, add padding with 05 for 5 times</li>
+</ol>
+<h3 id="CBC-padding-attack"><a href="#CBC-padding-attack" class="headerlink" title="CBC padding attack"></a>CBC padding attack</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://arbiter233.github.io/2022/06/07/6-7-md/" data-id="cl46mrg6l00024uiz3cpsgjhd" data-title="6.7" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reading-log/" rel="tag">Reading log</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-c1.4AE" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/06/c1.4AE/" class="article-date">
@@ -97,7 +209,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="C1-4-Authenticated-encryption"><a href="#C1-4-Authenticated-encryption" class="headerlink" title="C1.4 Authenticated encryption"></a>C1.4 Authenticated encryption</h1><h2 id="AE-communicate-with-known-key-and-symmetric-encryption"><a href="#AE-communicate-with-known-key-and-symmetric-encryption" class="headerlink" title="AE: communicate with known key and symmetric encryption"></a>AE: communicate with known key and symmetric encryption</h2><h2 id="AES-advacned-encription-standard-and-its-developments"><a href="#AES-advacned-encription-standard-and-its-developments" class="headerlink" title="AES: advacned encription standard and its developments"></a>AES: advacned encription standard and its developments</h2><ul>
+        <p>update log:</p>
+<ol>
+<li>date: 6.7<br>modify content on AEAD, add ChaCha20-Poly1305</li>
+</ol>
+<h1 id="C1-4-Authenticated-encryption"><a href="#C1-4-Authenticated-encryption" class="headerlink" title="C1.4 Authenticated encryption"></a>C1.4 Authenticated encryption</h1><h2 id="AE-communicate-with-known-key-and-symmetric-encryption"><a href="#AE-communicate-with-known-key-and-symmetric-encryption" class="headerlink" title="AE: communicate with known key and symmetric encryption"></a>AE: communicate with known key and symmetric encryption</h2><h2 id="AES-advacned-encription-standard-and-its-developments"><a href="#AES-advacned-encription-standard-and-its-developments" class="headerlink" title="AES: advacned encription standard and its developments"></a>AES: advacned encription standard and its developments</h2><ul>
 <li><p>security: mostly AES-128 ,require 2*128 opertions to brute force</p>
 </li>
 <li><p>general procesure:  </p>
@@ -114,7 +230,11 @@
 <li>apply AddRoundKey funciont using XOR operation to get output cyphertext</li>
 </ol>
 </li>
-<li><p>To transform into square matrix, padding is necessary, aka mode of operation.<br> Naive way of direclty (ECB,electronic codebook)dividing into boocks of 16bytes will cause trouble.<br> To overcome , CBC(cypher block chaining) use a unpredictable and random IV(initialization vector) to randomize encryption.</p>
+<li><p>To transform into square matrix, padding is necessary, aka mode of operation.  </p>
+</li>
+<li><p>Naive way of direclty (ECB,electronic codebook)dividing into boocks of 16bytes will lead to info leak of pattern as encryption is deterministic, typical example   </p>
+</li>
+<li><p>To overcome , CBC(cypher block chaining) use a unpredictable and random IV(initialization vector) to randomize input before encryption.</p>
 </li>
 <li><p>to encrypt with CBC operation, generate a random IV and XOR with first 16bytes of plaintext before encryption.  </p>
 </li>
@@ -123,17 +243,28 @@
 <li><p>Use previous cyphertext to XOR with next block of input iteratively. </p>
 </li>
 <li><p>To add integrity to the ciphertext , add addtional HMAC as authentication tag, forming a AES-CBC-HMAC construction.</p>
-</li>
-<li><p>To be developer-friendly, AES with Galois&#x2F;Counter Mode is invented as an all-in-one construcion<br>It apply AES with a key to a 128bit consisting of a nonce(a random number with max lenght 96 bits) concatenated with a count number(max 32bits)to produce a keystream</p>
+<h2 id="From-AES-CBC-HMAC-to-AEAD-AE-with-associated-data"><a href="#From-AES-CBC-HMAC-to-AEAD-AE-with-associated-data" class="headerlink" title="From AES-CBC-HMAC to AEAD(AE with associated data)"></a>From AES-CBC-HMAC to AEAD(AE with associated data)</h2></li>
+<li><p>To be developer-friendly and standarlized, AEAD is introduced</p>
+<h3 id="AES-GCM-AES-with-Galois-Counter-Mode-AEAD"><a href="#AES-GCM-AES-with-Galois-Counter-Mode-AEAD" class="headerlink" title="AES-GCM(AES with Galois Counter Mode) AEAD"></a>AES-GCM(AES with Galois Counter Mode) AEAD</h3></li>
+<li><p>It apply AES with a key to a 128bit string consisting of a nonce(a random number with max lenght 96 bits) concatenated with a count number(max 32bits)to produce a keystream</p>
 </li>
 <li><p>AES-GCM avoids padding as it can truncates the length of keystream to fit with length of input</p>
 </li>
 </ul>
+<h3 id="AEAD-alternative-ChaCha20-Poly1305"><a href="#AEAD-alternative-ChaCha20-Poly1305" class="headerlink" title="AEAD alternative: ChaCha20-Poly1305"></a>AEAD alternative: ChaCha20-Poly1305</h3><ol>
+<li>Speed:<ul>
+<li>Recall: AES is fast with hardware support</li>
+<li>In contrast, chacha20 and poly1305 were  designed to be fast with software</li>
+</ul>
+</li>
+<li>chacha20 takes a key and a unique nonce to produce many blocks of 64bits keystream by calling block function, which takes a 256 bits key, a 92 bits nonce, a 32 bits counter as in AES and AES-GCM.<br>Then XOR the keystrem with plaintext to produce ciphertext.</li>
+</ol>
+<p>3</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://arbiter233.github.io/2022/06/06/c1.4AE/" data-id="cl43s1dd20005g7iz6ywc97l5" data-title="Authenticated Encryption" class="article-share-link">Share</a>
+      <a data-url="https://arbiter233.github.io/2022/06/06/c1.4AE/" data-id="cl46mrg6x000d4uizgsardc1z" data-title="Authenticated Encryption" class="article-share-link">Share</a>
       
       
       
@@ -184,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://arbiter233.github.io/2022/06/05/c1.3-1.4/" data-id="cl43s1dcy0002g7iz36mgcm4k" data-title="MAC" class="article-share-link">Share</a>
+      <a data-url="https://arbiter233.github.io/2022/06/05/c1.3-1.4/" data-id="cl46mrg6w000c4uiza2f91eyq" data-title="MAC" class="article-share-link">Share</a>
       
       
       
@@ -268,86 +399,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://arbiter233.github.io/2022/06/04/c0-1.3/" data-id="cl43s1dcv0001g7iz6ditg546" data-title="Hash function" class="article-share-link">Share</a>
+      <a data-url="https://arbiter233.github.io/2022/06/04/c0-1.3/" data-id="cl46mrg6p00044uizc8l3a7tv" data-title="Hash function" class="article-share-link">Share</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reading-log/" rel="tag">Reading log</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-first-blog" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/05/29/first-blog/" class="article-date">
-  <time class="dt-published" datetime="2022-05-29T22:28:52.000Z" itemprop="datePublished">2022-05-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/programming/">programming</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/05/29/first-blog/">First blog</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="THis-is-log-for-5-x2F-29-LC-209"><a href="#THis-is-log-for-5-x2F-29-LC-209" class="headerlink" title="THis is log for 5&#x2F;29 LC#209"></a>THis is log for 5&#x2F;29 LC#209</h1><h2 id="5-x2F-29-add-explanation-for-Insight-1-solution1-using-idea-of-i"><a href="#5-x2F-29-add-explanation-for-Insight-1-solution1-using-idea-of-i" class="headerlink" title="5&#x2F;29 add explanation for Insight 1 solution1 using idea of *(-i)"></a>5&#x2F;29 add explanation for Insight 1 solution1 using idea of *(-i)</h2><p><strong>This post about md syntax</strong></p>
-<p><em>I forgot a lot</em></p>
-<h1 id="This-is-ordered-list"><a href="#This-is-ordered-list" class="headerlink" title="This is ordered list"></a>This is ordered list</h1><ol>
-<li>ref 1 : Elegant solution from <a target="_blank" rel="noopener" href="https://leetcode.com/problems/spiral-matrix-ii/discuss/22282/4-9-lines-Python-solutions">tite</a> </li>
-<li>ref 2 : starndard basic solution from <a target="_blank" rel="noopener" href="https://github.com/youngyangyang04/leetcode-master">title</a></li>
-</ol>
-<p>#This is unordered list</p>
-<ul>
-<li>item</li>
-<li>item</li>
-</ul>
-<p><code>echo (&quot;today is nice&quot;)</code></p>
-<h2 id="5-x2F-29-LC-209-minx-length-of-contiguous-subarray-with-sum-gt-x3D-target"><a href="#5-x2F-29-LC-209-minx-length-of-contiguous-subarray-with-sum-gt-x3D-target" class="headerlink" title="5&#x2F;29 LC #209 minx length of contiguous subarray with sum &gt;&#x3D;target"></a>5&#x2F;29 LC #209 minx length of contiguous subarray with sum &gt;&#x3D;target</h2><h3 id="Insight"><a href="#Insight" class="headerlink" title="Insight"></a>Insight</h3><p>Two pointers, create a sliding window with length being adjusted to have target sum and return length.</p>
-<h2 id="5-x2F-29-LC59-spiral-matrix"><a href="#5-x2F-29-LC59-spiral-matrix" class="headerlink" title="5&#x2F;29 LC59 spiral matrix"></a>5&#x2F;29 LC59 spiral matrix</h2><h3 id="Insight-1"><a href="#Insight-1" class="headerlink" title="Insight 1:"></a>Insight 1:</h3><p>start with [0][0] walk through n*n steps and turn whenever necessary</p>
-<h4 id="Solution1"><a href="#Solution1" class="headerlink" title="Solution1 :"></a>Solution1 :</h4><p>Solution3 from<br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/spiral-matrix-ii/discuss/22282/4-9-lines-Python-solutions">tite</a> </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">getMatrix</span>(<span class="params">n</span>):</span><br><span class="line">A = [[<span class="number">0</span>] * n <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        i, j, di, dj = <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(n*n):</span><br><span class="line">            A[i][j] = k + <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> A[(i+di)%n][(j+dj)%n]:</span><br><span class="line">                di, dj = dj, -di</span><br><span class="line">            i += di</span><br><span class="line">            j += dj</span><br><span class="line">    <span class="keyword">return</span> A</span><br></pre></td></tr></table></figure>
-<p>Explain: </p>
-<ol>
-<li>Initialize with 0s, file in until corner.</li>
-<li>(di,dj) &#x3D; (0,1), representing (0+i), direction vector.</li>
-<li><code>A[(i+di)%n][(j+dj)%n] ==1</code> will trigger turning.It require j+dj(j+1) &#x3D;&#x3D;n, meaning at the end of first row.</li>
-<li><code>di,di = dj,-di</code>makes a (-i) multiplication.</li>
-<li>direction vector (di,dj) is changed and ready for addition.</li>
-<li>Go to the end.</li>
-</ol>
-<h4 id="Solution2"><a href="#Solution2" class="headerlink" title="Solution2:"></a>Solution2:</h4><p>Solution from<br><a target="_blank" rel="noopener" href="https://github.com/youngyangyang04/leetcode-master">title</a></p>
-<h1 id="Updated-5-x2F-30-Solution-using-insight-2"><a href="#Updated-5-x2F-30-Solution-using-insight-2" class="headerlink" title="Updated 5&#x2F;30 Solution using insight 2"></a>Updated 5&#x2F;30 Solution using insight 2</h1><h2 id="add-Insight-to-LC-529-Building-it-inside"><a href="#add-Insight-to-LC-529-Building-it-inside" class="headerlink" title="add Insight to LC #529  Building it inside"></a>add Insight to LC #529  Building it inside</h2><h3 id="Insight-3-build-with-zip"><a href="#Insight-3-build-with-zip" class="headerlink" title="Insight 3 build with zip()"></a>Insight 3 build with zip()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">res, lo = [[n*n]], n*n </span><br><span class="line">        <span class="keyword">while</span> lo &gt; <span class="number">1</span>:</span><br><span class="line">            lo, hi = lo - <span class="built_in">len</span>(res), lo</span><br><span class="line">            <span class="comment">#print(&#x27;res:&#x27;, res)</span></span><br><span class="line">            res = [<span class="built_in">list</span>(<span class="built_in">range</span>(lo, hi))] + <span class="built_in">list</span>(<span class="built_in">zip</span>(*res[::-<span class="number">1</span>]))</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p>explanation :</p>
-<ol>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/8421337/rotating-a-two-dimensional-array-in-python">explanation on zip part</a><br>[::-1] return a list in revered order<br>ex:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="built_in">list</span>(revered(a))  <span class="string">&#x27;&#x27;&#x27;is same as&#x27;&#x27;&#x27;</span> a[::-<span class="number">1</span>]</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://arbiter233.github.io/2022/05/29/first-blog/" data-id="cl43s1dd40006g7iz24ja3pl8" data-title="First blog" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
 
     </footer>
   </div>
@@ -396,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://arbiter233.github.io/2022/05/29/hello-world/" data-id="cl43s1dd50007g7iz2l14celq" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="https://arbiter233.github.io/2022/05/29/hello-world/" data-id="cl46mrg6y000f4uizdfv35hc6" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -418,7 +474,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography/">Cryptography</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Cryptography/">Cryptography</a></li></ul>
     </div>
   </div>
 
@@ -428,7 +484,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reading-log/" rel="tag">Reading log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reading-log/" rel="tag">Reading log</a></li></ul>
     </div>
   </div>
 
@@ -438,7 +494,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Reading-log/" style="font-size: 20px;">Reading log</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a>
+      <a href="/tags/Reading-log/" style="font-size: 10px;">Reading log</a>
     </div>
   </div>
 
@@ -460,6 +516,14 @@
       <ul>
         
           <li>
+            <a href="/2022/06/09/Attacking-until-becoming-the-target/">Attacking until becoming the target</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/6-7-md/">6.7</a>
+          </li>
+        
+          <li>
             <a href="/2022/06/06/c1.4AE/">Authenticated Encryption</a>
           </li>
         
@@ -469,14 +533,6 @@
         
           <li>
             <a href="/2022/06/04/c0-1.3/">Hash function</a>
-          </li>
-        
-          <li>
-            <a href="/2022/05/29/first-blog/">First blog</a>
-          </li>
-        
-          <li>
-            <a href="/2022/05/29/hello-world/">Hello World</a>
           </li>
         
       </ul>
